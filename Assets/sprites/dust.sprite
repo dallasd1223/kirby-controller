@@ -1,0 +1,59 @@
+{
+  "ResourceVersion": 1,
+  "Animations": [
+    {
+      "FrameRate": 25,
+      "Origin": "0.5,0.5",
+      "Looping": false,
+      "LoopModeVal": 1,
+      "Name": "default",
+      "Frames": [
+        {
+          "FilePath": "sprites/dust1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/dust2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/dust3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/dust4.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/dust5.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    }
+  ],
+  "__references": [],
+  "__version": 1
+}

@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>package.facepunch.spritetools</name>
+    </assembly>
+    <members>
+        <member name="P:SpriteTools.SpriteComponent.Sprite">
+            <summary>
+            The sprite resource that this component uses.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.Tint">
+            <summary>
+            The color tint of the Sprite.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.FlashTint">
+            <summary>
+            The color of the sprite when it is flashing.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.MaterialOverride">
+            <summary>
+            Used to override the material with your own. Useful for custom shaders.
+            Shader requires a texture parameter named "Texture".
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.PlaybackSpeed">
+            <summary>
+            The playback speed of the animation.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.UsePixelScale">
+            <summary>
+            Whether or not the object should scale based on the resolution of the Sprite.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.CastShadows">
+            <summary>
+            Whether or not the sprite should render itself/its shadows.
+            </summary>
+        </member>
+        <member name="F:SpriteTools.SpriteComponent.BroadcastEvents">
+            <summary>
+            A dictionary of broadcast events that this component will send (populated based on the Sprite resource)
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.CurrentAnimation">
+            <summary>
+            The sprite animation that is currently playing.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.OnBroadcastEvent">
+            <summary>
+            Invoked when a broadcast event is triggered.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.OnAnimationComplete">
+            <summary>
+            Invoked when an animation reaches the last frame.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.CurrentTexture">
+            <summary>
+            The current texture atlas that the sprite is using.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.HasBroadcastEvents">
+            <summary>
+            Whether or not the sprite has any broadcast events.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteComponent.CurrentFrameIndex">
+            <summary>
+            The current frame index of the animation playing.
+            </summary>
+        </member>
+        <member name="M:SpriteTools.SpriteComponent.GetAttachmentTransform(System.String)">
+            <summary>
+            Get the global transform of an attachment point. Returns Transform.World if the attachment point does not exist.
+            </summary>
+            <param name="attachmentName">The name of the attach point</param>
+        </member>
+        <member name="M:SpriteTools.SpriteComponent.PlayAnimation(System.String,System.Boolean)">
+            <summary>
+            Plays an animation from the current Sprite by it's name.
+            </summary>
+            <param name="animationName">The name of the animation</param>
+            <param name="force">Whether or not the animation should be forced. If true this will restart the animation from frame index 0 even if the specified animation is equal to the current animation.</param>
+        </member>
+        <member name="P:SpriteTools.SpriteResource.Animations">
+            <summary>
+            A list of animations that are available for this sprite.
+            </summary>
+        </member>
+        <member name="M:SpriteTools.SpriteResource.GetAnimation(System.String)">
+            <summary>
+            Returns a specific animation by name (or null if it doesn't exist).
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.SpriteResource.GetAttachmentNames">
+            <summary>
+            Returns a list of names for every attachment this Sprite has.
+            </summary>
+        </member>
+        <member name="M:SpriteTools.SpriteResource.Load(System.String)">
+            <summary>
+            Try to load a sprite from a file path.
+            </summary>
+            <param name="path">The path to the sprite resource</param>
+        </member>
+        <member name="M:SpriteTools.SpriteResource.GetPreviewTexture">
+            <summary>
+            Returns the first frame of a sprite resource as a texture.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.SpriteResource.GetAllTexturePaths">
+            <summary>
+            Returns a list of all the texture paths used by this sprite.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpriteTools.SpriteResource.LoopMode">
+            <summary>
+            The different types of looping for sprite animation.
+            </summary>
+        </member>
+        <member name="F:SpriteTools.SpriteResource.LoopMode.None">
+            <summary>
+            The animation will play from start to finish and then stop.
+            </summary>
+        </member>
+        <member name="F:SpriteTools.SpriteResource.LoopMode.Forward">
+            <summary>
+            The animation will play from start to finish and then loop back to the start.
+            </summary>
+        </member>
+        <member name="F:SpriteTools.SpriteResource.LoopMode.PingPong">
+            <summary>
+            The animation will play from start to finish and then backwards from finish to start before looping.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation._nameProp">
+            <summary>
+            The name of the animation. This is used as a key to reference the animation.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation.FrameRate">
+            <summary>
+            The speed of the animation. This is the number of frames per second.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation.Origin">
+            <summary>
+            The origin of the sprite. This is used to determine where the sprite is drawn relative to/scaled around.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation.Looping">
+            <summary>
+            Whether or not the animation should loop. Replaced with LoopMode.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation.LoopMode">
+            <summary>
+            Whether or not the animation should loop and how.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation.Name">
+            <summary>
+            The name of the animation. This is used as a key to reference the animation.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation.Frames">
+            <summary>
+            The list of frames that make up the animation. These are image paths.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAnimation.Attachments">
+            <summary>
+            The list of attachment names that are available for this animation.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAttachment.Name">
+            <summary>
+            The name of the attachment point. This is used as a key to reference the attachment point.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAttachment.Color">
+            <summary>
+            The color of the attachment point. This is purely used as a visual aid in the Sprite Editor.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAttachment.Points">
+            <summary>
+            A list of points corresponding to the attachment point's position in each frame.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.SpriteAttachment.Visible">
+            <summary>
+            Whether or not the attachment point is visible in the Sprite Editor.
+            </summary>
+        </member>
+        <member name="T:SpriteTools.TextureAtlas">
+            <summary>
+            A class that combines multiple textures into a single texture.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TextureAtlas.AspectRatio">
+            <summary>
+            Returns the aspect ratio of a frame from the texture atlas.
+            </summary>
+        </member>
+        <member name="M:SpriteTools.TextureAtlas.GetFrameTiling">
+            <summary>
+            Returns the UV tiling for the texture atlas.
+            </summary>
+        </member>
+        <member name="M:SpriteTools.TextureAtlas.GetFrameOffset(System.Int32)">
+            <summary>
+            Returns the UV offset for a specific frame in the texture atlas.
+            </summary>
+            <param name="index">The index of the frame</param>
+        </member>
+        <member name="M:SpriteTools.TextureAtlas.GetTextureFromFrame(System.Int32)">
+            <summary>
+            Returns the texture for a specific frame in the texture atlas.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TextureAtlas.FromAnimation(SpriteTools.SpriteAnimation)">
+            <summary>
+            Returns a cached texture atlas given a sprite animation. Creates one if not in the cache. Returns null if there was an error and the atlas could not be created.
+            </summary>
+            <param name="animation">The sprite animation to create the atlas from</param>
+        </member>
+        <member name="M:SpriteTools.TextureAtlas.FromTextures(System.Collections.Generic.List{System.String})">
+            <summary>
+            Returns a cached texture atlas given a list of texture paths. Creates one if not in the cache. Returns null if there was an error and the atlas could not be created.
+            </summary>
+            <param name="texturePaths">A list containing a path to each frame</param>
+        </member>
+        <member name="M:SpriteTools.TextureAtlas.FromSpritesheet(System.String,System.Collections.Generic.List{Sandbox.Rect})">
+            <summary>
+            Returns a cached texture atlas given a spritesheet path and a list of sprite rects. Creates one if not in the cache. Returns null if there was an error and the atlas could not be created.
+            </summary>
+            <param name="path">The path to the spritesheet texture</param>
+            <param name="spriteRects">A list of rectangles representing the position of each sprite in the spritesheet</param>
+        </member>
+        <member name="M:SpriteTools.TextureAtlas.ClearCache(System.String)">
+            <summary>
+            Clears the cache of texture atlases. If a path is provided, only the atlases that contain that path will be removed.
+            </summary>
+            <param name="path">The path to remove from the cache</param>
+        </member>
+        <member name="T:SpriteTools.TileAtlas">
+            <summary>
+            A class that re-packs a tileset with 1px borders to avoid bleeding.
+            </summary>
+        </member>
+        <member name="M:SpriteTools.AutotileBrush.SetAutotileType(SpriteTools.AutotileType)">
+            <summary>
+            Set the autotile type for this brush. This will reset all existing tiles in the brush.
+            </summary>
+            <param name="autotileType"></param>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layers">
+            <summary>
+            The Layers within the TilesetComponent
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.HasCollider">
+            <summary>
+            Whether or not the component should generate a collider based on the specified Collision Layer
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Static">
+            <inheritdoc cref="P:Sandbox.Collider.Static" />
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.IsTrigger">
+            <inheritdoc cref="P:Sandbox.Collider.IsTrigger" />
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.ColliderWidth">
+            <summary>
+            The width of the generated collider
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Friction">
+            <inheritdoc cref="P:Sandbox.Collider.Friction" />
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Surface">
+            <inheritdoc cref="P:Sandbox.Collider.Surface" />
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.SurfaceVelocity">
+            <inheritdoc cref="P:Sandbox.Collider.SurfaceVelocity" />
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.IsDirty">
+            <summary>
+            Whether or not the associated Collider is dirty. Setting this to true will rebuild the Collider on the next frame.
+            </summary>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.GetLayerFromName(System.String)">
+            <summary>
+            Returns the Layer with the specified name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.GetLayerFromIndex(System.Int32)">
+            <summary>
+            Returns the Layer at the specified index
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.Name">
+            <summary>
+            The name of the Layer
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.IsVisible">
+            <summary>
+            Whether or not this Layer is currently being rendered
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.IsLocked">
+            <summary>
+            Whether or not this Layer is locked. Locked Layers will ignore any attempted changes
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.TilesetResource">
+            <summary>
+            The Tileset that this Layer uses
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.Height">
+            <summary>
+            The height of the Layer
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.IsCollisionLayer">
+            <summary>
+            Whether or not this Layer dictates the collision mesh
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.Tiles">
+            <summary>
+            A dictionary of all Tiles in the layer by their position.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.Autotiles">
+            <summary>
+            A dictionary containing a list of positions for each Autotile Brush by their ID.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetComponent.Layer.TilesetComponent">
+            <summary>
+            The TilesetComponent that this Layer belongs to
+            </summary>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.Copy">
+            <summary>
+            Returns an exact copy of the Layer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.SetTile(Vector2Int,System.Guid,Vector2Int,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Set a tile at the specified position. Will fail if IsLocked is true.
+            </summary>
+            <param name="position"></param>
+            <param name="tileId"></param>
+            <param name="cellPosition"></param>
+            <param name="angle"></param>
+            <param name="flipX"></param>
+            <param name="flipY"></param>
+            <param name="rebuild"></param>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.GetTile(Vector2Int)">
+            <summary>
+            Get the Tile at the specified position
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.GetTile(Vector3)">
+            <summary>
+            Get the Tile at the specified position
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.RemoveTile(Vector2Int)">
+            <summary>
+            Remove the Tile at the specified position. Will fail if IsLocked is true.
+            </summary>
+            <param name="position"></param>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.SetAutotile(SpriteTools.AutotileBrush,Vector2Int,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Set an Autotile at the specified position. Will fail if IsLocked is true.
+            </summary>
+            <param name="autotileBrush"></param>
+            <param name="position"></param>
+            <param name="enabled"></param>
+            <param name="update"></param>
+            <param name="isMerging"></param>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.SetAutotile(System.Guid,Vector2Int,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Set an Autotile at the specified position. Will fail if IsLocked is true.
+            </summary>
+            <param name="autotileId"></param>
+            <param name="position"></param>
+            <param name="enabled"></param>
+            <param name="update"></param>
+            <param name="isMerging"></param>
+        </member>
+        <member name="M:SpriteTools.TilesetComponent.Layer.UpdateAutotile(System.Guid,Vector2Int,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Update the Autotile at the specified position. Used when manually modifying the placed autotiles.
+            </summary>
+            <param name="autotileId"></param>
+            <param name="position"></param>
+            <param name="checkErased"></param>
+            <param name="updateSurrounding"></param>
+            <param name="shouldMerge"></param>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tile.Id">
+            <summary>
+            The unique ID for the Tile
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tile.Index">
+            <summary>
+            The index of the Tile in the Tileset
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tile.Name">
+            <summary>
+            The name of the Tile (if any)
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tile.Tags">
+            <summary>
+            The tags associated with the Tile. These are used for searching/filtering tiles or adding custom data.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tile.Position">
+            <summary>
+            The position of the Tile in the Atlas
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tile.Size">
+            <summary>
+            The size of the Tile in the Atlas (in Tiles)
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tile.Tileset">
+            <summary>
+            The 
+            </summary>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.Tile.Copy">
+            <summary>
+            Creates a copy of the Tile with a new ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.Tile.GetName">
+            <summary>
+            Returns the name of the Tile or a default name if none is set.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.FilePath">
+            <summary>
+            The file path to the image referenced by the tileset.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.TileSize">
+            <summary>
+            The size of each tile in the tileset (in pixels).
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.TileSeparation">
+            <summary>
+            The separation between each tile in the tileset (in pixels).
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.TileScale">
+            <summary>
+            How much the tileset should be scaled when placed in the Scene.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.Tiles">
+            <summary>
+            The list of all tiles in the tileset.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.InheritAutotileFrom">
+            <summary>
+            The tileset to inherit autotile settings from. This is useful if you have multiple
+            tilesets that are laid out in the exact same way.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.AutotileBrushes">
+            <summary>
+            A list of the autotile brushes for this tileset.
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.CurrentTextureSize">
+            <summary>
+            The size of the referenced texture in pixels (as it was when the tiles were first generated).
+            </summary>
+        </member>
+        <member name="P:SpriteTools.TilesetResource.CurrentTileSize">
+            <summary>
+            The size of each tile in pixels (as it was when the tiles were first generated)
+            </summary>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.GetTiling">
+            <summary>
+            Returns the UV tiling scale for the tileset.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.GetOffset(Vector2Int)">
+            <summary>
+            Returns the UV offset for the given cell position.
+            </summary>
+            <param name="cellPosition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.GetTileSize">
+            <summary>
+            Returns the size of each tile in world units.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.GetCurrentTileSize">
+            <summary>
+            Returns the size of each tile in world units from when it was first generated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.AddTile(SpriteTools.TilesetResource.Tile)">
+            <summary>
+            Add a tile to the tileset.
+            </summary>
+            <param name="tile"></param>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.RemoveTile(SpriteTools.TilesetResource.Tile)">
+            <summary>
+            Remove a tile from the tileset
+            </summary>
+            <param name="tile"></param>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.GetTileFromId(System.Guid)">
+            <summary>
+            Get a tile from its ID.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpriteTools.TilesetResource.GetAllAutotileBrushes">
+            <summary>
+            Returns a list of all autotile brushes for this tileset (including those inherited from parent tilesets).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpriteTools.Converters.JsonCollectionItemConverter`2">
+            <summary>
+            Json collection converter.
+            </summary>
+            <typeparam name="TDatatype">Type of item to convert.</typeparam>
+            <typeparam name="TConverterType">Converter to use for individual items.</typeparam>
+        </member>
+        <member name="M:SpriteTools.Converters.JsonCollectionItemConverter`2.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Reads a json string and deserializes it into an object.
+            </summary>
+            <param name="reader">Json reader.</param>
+            <param name="typeToConvert">Type to convert.</param>
+            <param name="options">Serializer options.</param>
+            <returns>Created object.</returns>
+        </member>
+        <member name="M:SpriteTools.Converters.JsonCollectionItemConverter`2.Write(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IEnumerable{`0},System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Writes a json string.
+            </summary>
+            <param name="writer">Json writer.</param>
+            <param name="value">Value to write.</param>
+            <param name="options">Serializer options.</param>
+        </member>
+    </members>
+</doc>
