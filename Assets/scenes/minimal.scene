@@ -244,21 +244,21 @@
         },
         {
           "__type": "Player",
-          "__guid": "7dcf3a8e-6ad4-4ebf-8af6-a64cd4c42db1",
+          "__guid": "9e05cb31-e466-4079-973e-f13c55f1c779",
           "__enabled": true,
           "AirDragMultiplier": 5,
-          "AirLinearDrag": 25,
+          "AirLinearDrag": 300,
           "BubbleEndSound": "sounds/breatheout.sound",
           "BubbleFlapBuffer": 0.5,
           "BubbleFlapSound": "sounds/flap.sound",
           "BubbleFlapStrength": 200,
-          "BubbleGravity": -50,
+          "BubbleGravity": -100,
           "BubbleGravityMultiplier": 2,
           "BubbleSpeed": 10,
           "BubbleStartSound": "sounds/breathin.sound",
           "CurrentBlinkBuffer": 1,
           "CurrentState": "Idle",
-          "DragMultiplier": 10,
+          "DragMultiplier": 5,
           "DuckSound": "sounds/duck.sound",
           "DustPrefab": {
             "_type": "gameobject",
@@ -266,10 +266,13 @@
           },
           "FaceDirection": "Right",
           "ForcedStop": false,
+          "FullJumpStrength": 400,
+          "FullRunSpeed": 15,
+          "FullWalkSpeed": 10,
           "Gravity": -200,
-          "GravityMultiplier": 10,
+          "GravityMultiplier": 5,
           "HardLandSound": "sounds/hardland.sound",
-          "HardLandStrength": 600,
+          "HardLandStrength": 200,
           "HasBlinked": false,
           "HasInput": false,
           "HasPeaked": false,
@@ -278,21 +281,28 @@
           "IsDucking": false,
           "IsFalling": false,
           "IsFlapping": false,
+          "IsFull": false,
           "IsIdle": false,
           "IsJumping": false,
           "IsRunning": false,
           "IsTurning": false,
           "IsWalking": false,
           "JumpSound": "sounds/jump.sound",
-          "JumpStrength": 1000,
+          "JumpStrength": 400,
           "LandSound": "sounds/land.sound",
-          "LinearDrag": 100,
+          "LinearDrag": 500,
+          "MaxAirHorizontalSpeed": 300,
           "MaxBlinkBuffer": 3,
           "MaxBubbleFallSpeed": -200,
-          "MaxBubbleFlySpeed": 300,
-          "MaxFallSpeed": -800,
-          "MaxRunSpeed": 500,
-          "MaxWalkSpeed": 300,
+          "MaxBubbleFlySpeed": 500,
+          "MaxBubbleGroundSpeed": 100,
+          "MaxFallSpeed": -300,
+          "MaxFullAirHorizontalSpeed": 300,
+          "MaxFullFallSpeed": -300,
+          "MaxFullRunSpeed": 140,
+          "MaxFullWalkSpeed": 90,
+          "MaxRunSpeed": 180,
+          "MaxWalkSpeed": 100,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -303,6 +313,7 @@
           "PastVelocity": "0,0",
           "RunSound": "sounds/run.sound",
           "RunSpeed": 20,
+          "SpitSound": "sounds/spit.sound",
           "Sprite": {
             "_type": "component",
             "component_id": "735ee84c-bf59-4a78-8e6d-c101c188baf2",
@@ -313,29 +324,36 @@
             "_type": "gameobject",
             "prefab": "prefabs/star.prefab"
           },
+          "SuckedSound": "sounds/sucked.sound",
+          "SuckLoopSound": null,
+          "SuckStartSound": "sounds/sucking.sound",
           "TimeSinceBlink": {
             "Absolute": 0,
-            "Relative": 93220.02
+            "Relative": 11443.813
           },
           "TimeSinceFall": {
             "Absolute": 0,
-            "Relative": 93220.02
+            "Relative": 11443.813
           },
           "TimeSinceJump": {
             "Absolute": 0,
-            "Relative": 93220.02
+            "Relative": 11443.813
           },
           "TimeSinceLastFlap": {
             "Absolute": 0,
-            "Relative": 93220.02
+            "Relative": 11443.813
           },
           "TimeSinceLastTurn": {
             "Absolute": 0,
-            "Relative": 93220.02
+            "Relative": 11443.813
           },
           "TimeSinceLowVel": {
             "Absolute": 0,
-            "Relative": 93220.02
+            "Relative": 11443.813
+          },
+          "TimeSinceSuckStart": {
+            "Absolute": 0,
+            "Relative": 11443.813
           },
           "TurnSound": "sounds/turn.sound",
           "Velocity": "0,0",
@@ -629,6 +647,56 @@
           "Static": false,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "2d9d4cce-45c9-4238-bcf8-0c467b3a68d4",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "dust5",
+      "Position": "-2.609413,-260.0119,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SpriteRenderer",
+          "__guid": "5b7fc524-24b2-423a-8073-9291d2afe638",
+          "__enabled": true,
+          "Additive": false,
+          "Billboard": "Always",
+          "Color": "1,1,1,1",
+          "DepthFeather": 0,
+          "FlipHorizontal": false,
+          "FlipVertical": false,
+          "FogStrength": 1,
+          "IsSorted": false,
+          "Lighting": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opaque": false,
+          "Pivot": "0.5,0.5",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Shadows": false,
+          "Size": "25,25",
+          "Texture": "sprites/dust5.png",
+          "TextureFilter": "Bilinear"
         }
       ],
       "Children": []

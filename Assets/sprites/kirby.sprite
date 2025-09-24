@@ -728,6 +728,490 @@
       "Attachments": [],
       "LoopStart": null,
       "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 0,
+      "Name": "suckstart",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_suckstart1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_suckstart2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_suckstart3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 1,
+      "Name": "suck",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_suck1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_suck2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,0.5",
+      "Looping": false,
+      "LoopModeVal": 1,
+      "Name": "full_default",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_fullidle1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 1,
+      "Name": "fullwalk",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_fullwalk1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk4.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk5.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk6.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk7.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk8.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk9.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk10.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk11.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk12.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk13.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk14.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullwalk15.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 0,
+      "Name": "fulljump",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_fulljump1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fulljump2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fulljump3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 1,
+      "Name": "fullfall",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_fullfall3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullfall4.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 0,
+      "Name": "fullpeak",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_fullfall1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullfall2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullfall3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 0,
+      "Name": "full_land",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_fullland1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullidle1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 0,
+      "Name": "fullblink",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_fullidleblink.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_fullidle1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 0,
+      "Name": "spit",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_spit1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_spit2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_spit3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_spit4.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_spit5.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,1",
+      "Looping": false,
+      "LoopModeVal": 0,
+      "Name": "sucked",
+      "Frames": [
+        {
+          "FilePath": "sprites/kirby_sucked1.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_sucked2.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_sucked3.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_sucked4.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_sucked5.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        },
+        {
+          "FilePath": "sprites/kirby_sucked6.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "0,0"
+          }
+        }
+      ],
+      "Attachments": [],
+      "LoopStart": null,
+      "LoopEnd": null
     }
   ],
   "__references": [],

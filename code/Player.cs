@@ -12,16 +12,27 @@ public sealed class Player : Component, Component.ICollisionListener
 	[Property] float RunSpeed {get; set;} = 20f;
 	[Property] float MaxRunSpeed {get; set;} = 180f;
 
+	[Property] float FullWalkSpeed {get; set;} = 10f;
+	[Property] float MaxFullWalkSpeed {get; set;} = 90f;
+
+	[Property] float FullRunSpeed {get; set;} = 15f;
+	[Property] float MaxFullRunSpeed {get; set;} = 140f;
+
 	[Property] public float LinearDrag {get; set;} = 500f;
 	[Property] public float DragMultiplier {get; set;} = 5f;
 
 	[Property] public float JumpStrength = 400f;
 	[Property] public float HardLandStrength = 200f;
 
+	[Property] public float FullJumpStrength = 400f;
+
 	[Property] public float MaxFallSpeed = -300f;
 	[Property] public float MaxAirHorizontalSpeed = 300f;
 	[Property] public float AirLinearDrag {get; set;} = 300f;
 	[Property] public float AirDragMultiplier {get; set;} = 5f;
+
+	[Property] public float MaxFullFallSpeed {get; set;} = -300f;
+	[Property] public float MaxFullAirHorizontalSpeed = 300f;
 
 	[Property] public float BubbleSpeed {get; set;} = 10f;
 	[Property] public float MaxBubbleFallSpeed {get; set;} = -200f;
@@ -51,6 +62,7 @@ public sealed class Player : Component, Component.ICollisionListener
 	[Property] [ReadOnly] public float CurrentBlinkBuffer = 1f;
 	[Property] [ReadOnly] public bool HasBlinked = false;
 
+	[Property] [ReadOnly] TimeSince TimeSinceSuckStart;
 	[Property] [ReadOnly] TimeSince TimeSinceLastFlap;
 	[Property] [ReadOnly] TimeSince TimeSinceLastTurn;
 	[Property] [ReadOnly] TimeSince TimeSinceJump;
@@ -61,6 +73,8 @@ public sealed class Player : Component, Component.ICollisionListener
 	[Property] [ReadOnly] public bool ForcedStop = false;
 
 	[Property] [ReadOnly] public bool HasPeaked = false;
+
+	[Property] [ReadOnly] public bool IsFull = false;
 
 	[Property] [ReadOnly] public bool IsBubble = false;
 
@@ -84,8 +98,15 @@ public sealed class Player : Component, Component.ICollisionListener
 	[Property] public SoundEvent BubbleFlapSound {get; set;}
 	[Property] public SoundEvent BubbleEndSound {get; set;}
 
+	[Property] public SoundEvent SuckStartSound {get; set;}
+	[Property] public SoundEvent SuckLoopSound {get; set;}
+	[Property] public SoundEvent SuckedSound {get; set;}
+	[Property] public SoundEvent SpitSound {get; set;}
+
 	[Property] public GameObject DustPrefab {get; set;}
 	[Property] public GameObject StarPrefab {get; set;}
+
+	private SoundHandle Handle;
 
 	protected override void OnAwake()
 	{
@@ -131,6 +152,29 @@ public sealed class Player : Component, Component.ICollisionListener
 			SetState(KirbyState.Peak);
 			IsBubble = false;
 		}
+		else if(s == "suckstart")
+		{
+			Sprite.PlayAnimation("suck");
+		}
+		else if(s == "sucked")
+		{
+			SetState(KirbyState.FullIdle);
+		}
+		else if(s== "fullblink")
+		{
+			Sprite.PlayAnimation("full_default");
+		}
+		else if(s == "spit")
+		{
+			if(!OnGround)
+			{
+				SetState(KirbyState.Peak);
+			}
+			else
+			{
+				SetState(KirbyState.Idle);
+			}
+		}
 	}
 	protected override void OnStart()
 	{
@@ -139,8 +183,16 @@ public sealed class Player : Component, Component.ICollisionListener
 		ResetBlink();
 	}
 
+	void HandleSuckTemp()
+	{
+		if(CurrentState == KirbyState.Sucking && TimeSinceSuckStart >= 2f)
+		{
+			SetState(KirbyState.Sucked);
+		}
+	}
 	protected override void OnUpdate()
 	{
+		HandleSuckTemp();
 		switch(CurrentState)
 		{
 			case KirbyState.Idle:
@@ -184,6 +236,10 @@ public sealed class Player : Component, Component.ICollisionListener
 		{
 			Sprite.PlayAnimation("duck_blink");
 		}
+		else if(CurrentState == KirbyState.FullIdle)
+		{
+			Sprite.PlayAnimation("fullblink");
+		}
 
 	}
 	void ResetBlink()
@@ -195,6 +251,21 @@ public sealed class Player : Component, Component.ICollisionListener
 	void BuildWishVelocity()
 	{
 		WishVelocity = 0;
+		if(Input.Pressed("Menu"))
+		{
+			if(IsFull)
+			{
+				if(CurrentState != KirbyState.Sucking && CurrentState != KirbyState.Sucked)
+				{
+					SetState(KirbyState.Spit);
+					return;
+				}
+			}
+			if(IsBubble) return;
+			if(CurrentState == KirbyState.Sucking) return;
+			SetState(KirbyState.Sucking);
+		}
+
 		if(Input.Pressed("Use"))
 		{
 			if(IsBubble)
@@ -202,6 +273,7 @@ public sealed class Player : Component, Component.ICollisionListener
 				if(CurrentState == KirbyState.BubbleFlap || CurrentState == KirbyState.BubbleFall || CurrentState == KirbyState.BubbleGround)
 				{
 					SetState(KirbyState.BubbleEnd);
+					return;
 				}
 				return;
 			}
@@ -272,8 +344,24 @@ public sealed class Player : Component, Component.ICollisionListener
 
 		}
 		var input = Input.AnalogMove;
+		if(input.y != 0 && Input.Down("Run") && (CurrentState != KirbyState.FullJumping && CurrentState != KirbyState.FullFalling && CurrentState != KirbyState.FullPeak && CurrentState != KirbyState.FullLand) && !IsFalling)
+		{
+			if(IsFull)
+			{
+				HasInput = true;
+				if(!IsTurning)
+				{
+					SetState(KirbyState.FullRunning);
+				}
+
+				Velocity += new Vector2(-input.y,0) * FullRunSpeed;
+				return;				
+			}
+
+		}
 		if(input.y != 0 && Input.Down("Run") && (CurrentState != KirbyState.Jumping && CurrentState != KirbyState.Falling && CurrentState != KirbyState.Peak && CurrentState != KirbyState.Land) && !IsFalling)
 		{
+			if(IsFull) return;
 			HasInput = true;
 			if(!IsTurning)
 			{
@@ -285,6 +373,16 @@ public sealed class Player : Component, Component.ICollisionListener
 		else if(input.y != 0 && (CurrentState != KirbyState.Land))
 		{
 			HasInput = true;
+			if(IsFull)
+			{
+				if(OnGround)
+				{
+					if(CurrentState == KirbyState.FullPeak) return;
+					SetState(KirbyState.FullWalking);
+					Velocity += new Vector2(-input.y,0) * FullWalkSpeed;
+					return;
+				}
+			}
 			if(!IsBubble)
 			{
 				if(!IsTurning)
@@ -388,7 +486,7 @@ public sealed class Player : Component, Component.ICollisionListener
 
 
 		}
-		else
+		else if(!IsBubble && !IsFull)
 		{
 			if(!OnGround)
 			{
@@ -471,7 +569,7 @@ public sealed class Player : Component, Component.ICollisionListener
 						Velocity = new Vector2(-MaxRunSpeed, Velocity.y);
 					}
 				}
-				if(Velocity.y == 0 && Velocity.x == 0 && CurrentState != KirbyState.Idle && CurrentState != KirbyState.Ducking && CurrentState != KirbyState.Land)
+				if(Velocity.y == 0 && Velocity.x == 0 && CurrentState != KirbyState.Idle && CurrentState != KirbyState.Ducking && CurrentState != KirbyState.Land && CurrentState != KirbyState.Sucking)
 				{
 					SetState(KirbyState.Idle);
 				}
@@ -500,6 +598,68 @@ public sealed class Player : Component, Component.ICollisionListener
 				}
 			}
 		}
+		else if(IsFull)
+		{
+			if(OnGround)
+			{
+				if(MathF.Abs(Velocity.x) <= 20 && Velocity.x != 0)
+				{
+					if(!HitLowVel)
+					{
+						HitLowVel = true;
+						TimeSinceLowVel = 0f;
+					}
+					else if(HitLowVel && TimeSinceLowVel >= 0.5f)
+					{
+						Velocity = 0;
+						HitLowVel = false;
+						Log.Info("ForceStop");
+					}
+				}
+				else
+				{
+					HitLowVel = false;
+				}
+				if(CurrentState == KirbyState.FullWalking)
+				{
+					if(Velocity.x > MaxWalkSpeed)
+					{
+						Velocity = new Vector2(MaxWalkSpeed, Velocity.y);
+					}
+					else if(Velocity.x < -MaxWalkSpeed)
+					{
+						Velocity = new Vector2(-MaxWalkSpeed, Velocity.y);
+					}
+				}
+				if(CurrentState == KirbyState.FullRunning)
+				{
+					if(Velocity.x > MaxFullRunSpeed)
+					{
+						Velocity = new Vector2(MaxFullRunSpeed, Velocity.y);
+					}
+					else if(Velocity.x < -MaxFullRunSpeed)
+					{
+						Velocity = new Vector2(-MaxFullRunSpeed, Velocity.y);
+					}
+				}
+				if(Velocity.y == 0 && Velocity.x == 0 && CurrentState != KirbyState.Spit && CurrentState != KirbyState.Idle && CurrentState != KirbyState.Ducking && CurrentState != KirbyState.Land && CurrentState != KirbyState.Sucking)
+				{
+					SetState(KirbyState.FullIdle);
+				}
+				if(!HasInput)
+				{
+					if(Velocity.x < 0)
+					{
+						Velocity += new Vector2(LinearDrag * Time.Delta * DragMultiplier, 0);
+					}
+					if(Velocity.x > 0)
+					{
+						Velocity += new Vector2(-LinearDrag * Time.Delta * DragMultiplier, 0);
+					}
+				}
+			}
+
+		}
 		
 		PastVelocity = Velocity;
 		WorldPosition += new Vector3(Velocity.x, Velocity.y, 0) * Time.Delta;
@@ -513,6 +673,7 @@ public sealed class Player : Component, Component.ICollisionListener
 				if(CurrentState == state) return;
 				CurrentState = state;
 				IsIdle = true;
+				IsFull = false;
 				IsFalling = false;
 				IsJumping = false;
 				IsDucking = false;
@@ -574,6 +735,7 @@ public sealed class Player : Component, Component.ICollisionListener
 				IsDucking = false;
 				IsRunning = false;
 				IsIdle = false;
+				IsFull = false;
 				IsWalking = false;	
 				Sprite.PlayAnimation("peak");
 				break;	
@@ -662,11 +824,58 @@ public sealed class Player : Component, Component.ICollisionListener
 				TimeSinceFall = 0f;
 				Sprite.PlayAnimation("breatheout");
 				Sound.Play(BubbleEndSound);
-				break;										 
+				break;
+			case KirbyState.Sucking:
+				if(CurrentState == state) return;
+				CurrentState = state;
+				TimeSinceSuckStart = 0f;
+				Sprite.PlayAnimation("suckstart");
+				Handle = Sound.Play(SuckStartSound);
+				break;
+			case KirbyState.Sucked:
+				if(CurrentState == state) return;
+				CurrentState = state;	
+				IsFull = true;
+				Sprite.PlayAnimation("sucked");
+				Sound.Play(SuckedSound);
+				break;	
+			case KirbyState.FullIdle:
+				if(CurrentState == state) return;
+				CurrentState = state;	
+				IsFull = true;	
+				Sprite.PlayAnimation("full_default");
+				break;
+			case KirbyState.FullWalking:
+				if(CurrentState == state) return;
+				CurrentState = state;	
+				IsFull = true;		
+				IsWalking = true;
+				IsRunning = false;
+				IsIdle = false;
+				Sprite.PlayAnimation("fullwalk");
+				Sprite.PlaybackSpeed = 1f;
+				break;
+			case KirbyState.FullRunning:
+				if(CurrentState == state) return;
+				CurrentState = state;	
+				IsFull = true;		
+				IsWalking = false;
+				IsRunning = true;
+				IsIdle = false;
+				Sprite.PlayAnimation("fullwalk");
+				Sprite.PlaybackSpeed = 1.5f;
+				break;
+			case KirbyState.Spit:
+				if(CurrentState == state) return;
+				CurrentState = state;
+				Sprite.PlayAnimation("spit");
+				Sound.Play(SpitSound);
+				Sprite.PlaybackSpeed = 1f;	
+				break;
 			default:
+
 				break;
 		}
-
 		Log.Info($"State: {state}");
 	}
 
@@ -847,6 +1056,17 @@ public enum KirbyState
 	BubbleFall,
 	BubbleGround,
 	BubbleEnd,
+	Sucking,
+	Sucked,
+	FullIdle,
+	FullWalking,
+	FullRunning,
+	FullJumping,
+	FullPeak,
+	FullFalling,
+	FullLand,
+	Spit,
+	Swallow,
 }
 
 public enum Direction
